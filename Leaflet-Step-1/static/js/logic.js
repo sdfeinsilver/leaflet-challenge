@@ -15,10 +15,27 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(myMap);
 
 // Store query url that references earthquake info in variable
-let queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+let link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
+// Grab the GeoJSON data
+d3.json(link, function(data) {
+    // Create a function that will create the features of our map
+    function createEarthquakeFeatures(feature) {
+        return {
+            // Function to assign color based on depth of earthquake
+            fillColor: assignColor(feature.geometry.coordinates[2]),
+            color: "black",
+            // Function to assing radius based on radius of earthquake
+            radius: assignRadius(feature.properties.mag),
+            stroke: true,
+            weight: 1.0,
+            opacity: 1,
+            fillOpacity: 1,
+        };
+    
 
-
+    }
+})
 
 
 
