@@ -38,14 +38,23 @@ d3.json(link, function(data) {
             if (depth > 90) {
                 return "Black";
             }
-            else if (depth > 65) {
+            else if (depth > 75) {
                 return "Brown";
             }
-            else if (depth > 40) {
-                return "Blue";
+            else if (depth > 50) {
+                return "Crimson";
+            }
+            else if (depth > 25) {
+                return "Chocolate";
             }
             else if (depth > 15) {
-                return "Aquamarine";
+                return "Coral";
+            }
+            else if (depth > 10) {
+                return "BurlyWood";
+            }
+            else if (depth > 5) {
+                return "Beige";
             }
             else {
                 return "AliceBlue";
@@ -54,7 +63,7 @@ d3.json(link, function(data) {
 
         // Create Function assignRadius
         function assignRadius(magnitude) {
-            return magnitude *3;
+            return magnitude *5;
         };
     };
 
