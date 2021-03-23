@@ -56,9 +56,26 @@ d3.json(link, function(data) {
         function assignRadius(magnitude) {
             return magnitude *3;
         };
-    
+    };
 
-    }
+    // Add GeoJSON layer to map
+    L.geoJson(data, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng);
+        },
+
+        // Set style of circle marker based on createEarthquakeFeatures function
+        style: createEarthquakeFeatures,
+
+        // Create popup for each marker with necessary info
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(
+                "Quake Magnigude: " + feature.properties.mag +
+                "<br>Depth: " + feature.geometry.coordinates[2] +
+                "<br>Location: " + feature.properties.place
+            );
+        }
+    }).addTo(myMap);
 })
 
 
