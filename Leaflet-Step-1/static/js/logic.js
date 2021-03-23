@@ -35,7 +35,7 @@ d3.json(link, function(data) {
 
         // Create Function assignColor
         function assignColor(depth) {
-            if (depth > 90) {
+            if (depth > 100) {
                 return "Black";
             }
             else if (depth > 75) {
@@ -86,25 +86,24 @@ d3.json(link, function(data) {
         }
     }).addTo(myMap);
 
-    // Create Legend
-    let legend = L.control({
-        position: "topright"
-    });
+// Create Legend
+let legend = L.control({ position: "bottomleft" });
 
-    // Add Legend Details
-    legend.onAdd = function () {
-        let div = L.DomUtil.create("div", "Legend Info");
-        let grades = [15, 40, 65, 90];
-        let colors = ["Black", "Brown", "Blue", "Aquamarine", "AliceBlue"];
+legend.onAdd = function(map) {
+let div = L.DomUtil.create("div", "legend");
+div.innerHTML += "<h4>Earthquake Depth Legend</h4>";
+div.innerHTML += '<i style="background: AliceBlue"></i><span><5</span><br>';
+div.innerHTML += '<i style="background: Beige"></i><span>>5</span><br>';
+div.innerHTML += '<i style="background: BurlyWood"></i><span>>10</span><br>';
+div.innerHTML += '<i style="background: Coral"></i><span>>15</span><br>';
+div.innerHTML += '<i style="background: Chocolate"></i><span>>25</span><br>';
+div.innerHTML += '<i style="background: Crimson"></i><span>>50</span><br>';
+div.innerHTML += '<i style="background: Brown"></i><span>>75</span><br>';
+div.innerHTML += '<i style="background: Black"></i><span>>100</span><br>';
 
-        // Loop through grade intervals and generate colored labels
-        for (let i = 0; i < grades.length; i++) {
-            div.innerHTML += "<i style='background: " + colors[i] + "'></i> "
-            + grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");
-        }
-        return div;
-    };
 
-    // Add legend to map
-    legend.addTo(myMap);
+return div;
+};
+
+legend.addTo(myMap);
 });
