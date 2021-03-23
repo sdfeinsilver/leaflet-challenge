@@ -76,7 +76,29 @@ d3.json(link, function(data) {
             );
         }
     }).addTo(myMap);
-})
+
+    // Create Legend
+    let legend = L.control({
+        position: "topright"
+    });
+
+    // Add Legend Details
+    legend.onAdd = function () {
+        let div = L.DomUtil.create("div", "Legend Info");
+        let grades = [15, 40, 65, 90];
+        let colors = ["Black", "Brown", "Blue", "Aquamarine", "AliceBlue"];
+
+        // Loop through grade intervals and generate colored labels
+        for (let i = 0; i < grades.length; i++) {
+            div.innerHTML += "<i style='background: " + colors[i] + "'></i> "
+            + grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");
+        }
+        return div;
+    };
+
+    // Add legend to map
+    legend.addTo(myMap);
+});
 
 
 
