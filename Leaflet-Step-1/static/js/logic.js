@@ -22,15 +22,39 @@ d3.json(link, function(data) {
     // Create a function that will create the features of our map
     function createEarthquakeFeatures(feature) {
         return {
-            // Function to assign color based on depth of earthquake
+            // Function assignColor will assign color of markers based on depth of quake
             fillColor: assignColor(feature.geometry.coordinates[2]),
             color: "black",
-            // Function to assing radius based on radius of earthquake
+            // Function assignRadius will multiply magnitude of radius to make marker more readable
             radius: assignRadius(feature.properties.mag),
             stroke: true,
             weight: 1.0,
             opacity: 1,
             fillOpacity: 1,
+        };
+
+        // Create Function assignColor
+        function assignColor(depth) {
+            if (depth > 90) {
+                return "Black";
+            }
+            else if (depth > 65) {
+                return "Brown";
+            }
+            else if (depth > 40) {
+                return "Blue";
+            }
+            else if (depth > 15) {
+                return "Aquamarine";
+            }
+            else {
+                return "AliceBlue";
+            }
+        };
+
+        // Create Function assignRadius
+        function assignRadius(magnitude) {
+            return magnitude *3;
         };
     
 
@@ -41,22 +65,6 @@ d3.json(link, function(data) {
 
 
 
-
-
-
-// // Perform a GET request to the query URL
-// d3.json(queryUrl, function (data) {
-//     // Once we get a response, send the data.features object to the createFeatures function
-//     function createFeatures(feature) {
-//         return {
-//             fillColor: chooseColor(feature.geometry.coordinates[2]),
-//             color: "black",
-//             radius: chosenRadius(feature.properties.mag),
-//             stroke: true,
-//             weight: 1.0,
-//             opacity: 1,
-//             fillOpacity: 1
-//         };
 
 //         // Setting the radius of magnitude
 //         function chosenRadius(magnitude) {
