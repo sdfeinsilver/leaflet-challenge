@@ -15,7 +15,7 @@ var satelliteMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/
     tileSize: 512,
     maxZoom: 18,
     zoomOffset: -1,
-    id: "mapbox/light-v10",
+    id: "mapbox/satellite-v9",
     accessToken: API_KEY
 }); 
 
@@ -24,48 +24,22 @@ var outdoorsMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{
     tileSize: 512,
     maxZoom: 18,
     zoomOffset: -1,
-    id: "mapbox/light-v10",
+    id: "mapbox/outdoors-v11",
     accessToken: API_KEY
 }); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Create initial map object, insert into "mapid" html id in div tag
 var myMap = L.map("mapid", {
     center: [32.7767, -96.7970],
-    zoom: 5
+    zoom: 5,
+    layers: [grayMap, satelliteMap, outdoorsMap]
 });
 
-// Add the tile layer (background map image) to our map
-L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    tileSize: 512,
-    maxZoom: 18,
-    zoomOffset: -1,
-    id: "mapbox/streets-v11",
-    accessToken: API_KEY
-}).addTo(myMap);
+
+
+
+
+
 
 // Store query url that references earthquake info in variable
 let link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
