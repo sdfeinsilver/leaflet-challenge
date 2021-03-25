@@ -49,6 +49,12 @@ let baseMaps = {
     OutdoorsMap: outdoorsMap
 };
 
+// Defien overlays object
+let overlays = {
+    "Tectonic Plates View": tectonicPlates,
+    Earthquakes: earthquakes
+};
+
 
 
 
